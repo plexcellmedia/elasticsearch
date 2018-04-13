@@ -41,7 +41,7 @@ See [Full Documentation](https://github.com/basemkhirat/elasticsearch/wiki/1.-In
 ##### 1) Install package using composer.
 
 ```bash
-$ composer require basemkhirat/elasticsearch
+$ composer require richdynamix/elasticsearch
 ```
 
 ##### 2) Add package service provider (< laravel 5.5).
