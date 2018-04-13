@@ -1001,7 +1001,7 @@ class Query
 
         $objects = $this->get();
 
-        return new Pagination($objects, $objects->total, $per_page, $page, ['path' => Request::url(), 'query' => Request::query()]);
+        return new Pagination($objects, $objects->total, $per_page, $page, ['path' => url()->current(), 'query' => Request::query()]);
     }
 
     /**
