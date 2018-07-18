@@ -22,7 +22,7 @@ class Collection extends BaseCollection
     /**
      * Get the collection of items as Array.
      *
-     * @return string
+     * @return array
      */
     public function toArray()
     {
