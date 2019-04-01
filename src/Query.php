@@ -161,6 +161,11 @@ class Query
      */
     public $model;
 
+    /**
+     * Refresh mode
+     * @var string
+     */
+    protected $refresh;
 
     /**
      * Query constructor.
@@ -654,6 +659,26 @@ class Query
     }
 
     /**
+     * Set refresh value
+     * @param string $mode
+     * @return this
+     */
+    public function refresh($mode = "wait_for")
+    {
+        $this->refresh = $mode;
+        return $this;
+    }
+
+    /**
+     * Get refresh value
+     * @return string
+     */
+    public function getRefresh()
+    {
+        return $this->refresh;
+    }
+
+    /**
      * Search the entire document fields
      * @param null $q
      * @return $this
@@ -1034,6 +1059,10 @@ class Query
             $parameters["id"] = $this->_id;
         }
 
+        if ($refresh = $this->getRefresh()) {
+            $parameters["refresh"] = $refresh;
+        }
+
         return (object)$this->connection->index($parameters);
     }
 
@@ -1103,6 +1132,10 @@ class Query
 
         if ($type = $this->getType()) {
             $parameters["type"] = $type;
+        }
+
+        if ($refresh = $this->getRefresh()) {
+            $parameters["refresh"] = $refresh;
         }
 
         return (object)$this->connection->update($parameters);
@@ -1181,7 +1214,6 @@ class Query
         }
 
         $parameters = [
-            "id" => $this->_id,
             'client' => ['ignore' => $this->ignores]
         ];
 
@@ -1193,7 +1225,18 @@ class Query
             $parameters["type"] = $type;
         }
 
-        return (object)$this->connection->delete($parameters);
+        if ($refresh = $this->getRefresh()) {
+            $parameters["refresh"] = $refresh;
+        }
+
+        if (is_null($_id)) {
+            $parameters["body"] = $this->getBody();
+            return (object)$this->connection->deleteByQuery($parameters);
+        } else {
+            $parameters["id"] = $this->_id;
+            return (object)$this->connection->delete($parameters);
+        }
+
     }
 
     /**
