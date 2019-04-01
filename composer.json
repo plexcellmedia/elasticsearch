@@ -1,5 +1,5 @@
 {
-    "name": "richdynamix/elasticsearch",
+    "name": "plexcellmedia/elasticsearch",
     "description": "Laravel and Lumen ElasticSearch query builder to build complex queries using an elegant syntax",
     "keywords": [
         "elasticsearch",
@@ -15,7 +15,7 @@
     "type": "package",
     "homepage": "http://basemkhirat.com",
     "support": {
-        "issues": "https://github.com/richdynamix/elasticsearch/issues",
+        "issues": "https://github.com/plexcellmedia/elasticsearch/issues",
         "source": "http://basemkhirat.com/indexing/2016/01/07/laravel-elasticseach-query-builder.html"
     },
     "authors": [
@@ -26,6 +26,10 @@
         {
             "name": "Steven Richardson",
             "email": "stveen@richdynamix.com"
+        },
+        {
+            "name": "Plexcellmedia",
+            "email": "plexcell@plexcellmedia.com"
         }
     ],
     "autoload": {
